@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "Initiate",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/initiate.py",
             "console": "integratedTerminal",

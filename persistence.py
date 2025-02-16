@@ -48,11 +48,11 @@ class Repository(object):
     def __init__(self):
         self._conn = sqlite3.connect('bgumart.db')
         # DAOs for each table
-        self.employees = Dao(self._conn, "employees", Employee)
-        self.suppliers = Dao(self._conn, "suppliers", Supplier)
-        self.products = Dao(self._conn, "products", Product)
-        self.branches = Dao(self._conn, "branches", Branche)
-        self.activities = Dao(self._conn, "activities", Activitie)
+        self.employees = Dao(Employee,self._conn)
+        self.suppliers = Dao(Supplier,self._conn)
+        self.products = Dao(Product,self._conn)
+        self.branches = Dao(Branche,self._conn)
+        self.activities = Dao(Activitie,self._conn)
         
     def _close(self):
         self._conn.commit()

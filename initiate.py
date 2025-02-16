@@ -33,18 +33,24 @@ adders = {  "B": add_branche,
             "P": add_product,
             "E": add_employee}
 
-def main(args : list[str]):
+
+def main(args: list[str]):
     inputfilename = args[1]
-    # delete the database file if it exists
-    repo._close()
-    if os.path.isfile("bgumart.db"):
-        os.remove("bgumart.db")
-    repo.__init__()
-    repo.create_tables()
+
+    # Delete the database file if it exists
+    # if os.path.isfile("bgumart.db"):
+    #     os.remove("bgumart.db")
+
+    # Create a new database and tables
+    repo.create_tables()  
+
+    # Read the input file and populate the database
     with open(inputfilename) as inputfile:
         for line in inputfile:
-            splittedline : list[str] = line.strip().split(",")
+            splittedline = line.strip().split(",")
             adders.get(splittedline[0])(splittedline[1:])
+
+    repo._conn.commit()  # Commit all changes to the database
 
 if __name__ == '__main__':
     main(sys.argv)
